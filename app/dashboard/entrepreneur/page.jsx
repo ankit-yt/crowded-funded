@@ -10,6 +10,7 @@ export default function EntrepreneurDashboard() {
   const [stats, setStats] = useState(null)
   const [campaigns, setCampaigns] = useState([])
   const [loading, setLoading] = useState(true)
+   const [expandedCampaigns, setExpandedCampaigns] = useState({})
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,6 +55,10 @@ export default function EntrepreneurDashboard() {
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
       </div>
     )
+  }
+
+    const toggleInvestors = (id) => {
+    setExpandedCampaigns((prev) => ({ ...prev, [id]: !prev[id] }))
   }
 
   return (
@@ -138,12 +143,14 @@ export default function EntrepreneurDashboard() {
                     <th className="px-6 py-3 text-left text-sm font-semibold text-white">Raised</th>
                     <th className="px-6 py-3 text-left text-sm font-semibold text-white">Status</th>
                     <th className="px-6 py-3 text-left text-sm font-semibold text-white">Progress</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-white">Investor</th>
                   </tr>
                 </thead>
                 <tbody>
                   {campaigns.map((campaign) => {
                     const progress = Math.min((campaign.currentAmount / campaign.targetAmount) * 100, 100)
                     return (
+                     <>
                       <tr key={campaign._id} className="border-b border-slate-700/50 hover:bg-slate-700/30 transition">
                         <td className="px-6 py-4">
                           <Link
@@ -173,7 +180,51 @@ export default function EntrepreneurDashboard() {
                           </div>
                           <p className="text-xs text-slate-400 mt-1">{Math.round(progress)}%</p>
                         </td>
+                         <td className="px-6 py-4">
+                            <button
+                              onClick={() => toggleInvestors(campaign._id)}
+                              className="text-blue-400 hover:text-blue-300 underline text-sm"
+                            >
+                              {expandedCampaigns[campaign._id]
+                                ? "Hide Investors"
+                                : `${campaign.investorCount || 0} View`}
+                            </button>
+                          </td>
                       </tr>
+                       {expandedCampaigns[campaign._id] && (
+                          <tr className="bg-slate-800/70 border-b border-slate-700/50">
+                            <td colSpan={6} className="px-6 py-4">
+                              {campaign.investors?.length ? (
+                                <ul className="space-y-2">
+                                  {campaign.investors.map((inv) => (
+                                    <li
+                                      key={inv._id}
+                                      className="flex justify-between items-center border border-slate-700 rounded-lg p-3 bg-slate-900/50"
+                                    >
+                                      <div>
+                                        <p className="font-medium text-white">
+                                          {inv.investor?.name || "Unknown Investor"}
+                                        </p>
+                                        <p className="text-slate-400 text-sm">
+                                          {inv.investor?.email || "N/A"}
+                                        </p>
+                                      </div>
+                                      <p className="text-green-400 font-semibold">
+                                        ₹{inv.amount?.toLocaleString() || 0}
+                                      </p>
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : (
+                                <p className="text-slate-400 text-sm italic">
+                                  No investors yet
+                                </p>
+                              )}
+                            </td>
+                          </tr>
+                        )}
+                     </>
+                      
                     )
                   })}
                 </tbody>

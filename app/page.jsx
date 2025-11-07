@@ -45,69 +45,70 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/* Navigation */}
-      <nav className="bg-slate-800/50 backdrop-blur-md border-b border-slate-700/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-lg"></div>
-              <span className="font-bold text-white text-xl">CrowdFund Campus</span>
-            </div>
-            <div className="flex gap-4">
-              {isLoggedIn ? (
-                <>
-                  <Link href="/dashboard" className="px-4 py-2 text-white hover:bg-slate-700 rounded-lg transition">
-                    Dashboard
-                  </Link>
-                  <button
-                    onClick={() => {
-                      localStorage.removeItem("token")
-                      localStorage.removeItem("user")
-                      setIsLoggedIn(false)
-                    }}
-                    className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition"
-                  >
-                    Logout
-                  </button>
-                </>
-              ) : (
-                <>
-                  <Link href="/login" className="px-4 py-2 text-white hover:bg-slate-700 rounded-lg transition">
-                    Login
-                  </Link>
-                  <Link
-                    href="/register"
-                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition"
-                  >
-                    Register
-                  </Link>
-                </>
-              )}
-            </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+      {/* Navbar */}
+      <nav className="bg-slate-800/50 backdrop-blur-md border-b border-slate-700/50 fixed top-0 left-0 w-full z-50">
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-lg"></div>
+            <span className="font-bold text-white text-xl">CrowdFund Campus</span>
+          </div>
+          <div className="flex gap-4">
+            {isLoggedIn ? (
+              <>
+                <Link href="/dashboard" className="px-4 py-2 text-white hover:bg-slate-700 rounded-lg transition">
+                  Dashboard
+                </Link>
+                <button
+                  onClick={() => {
+                    localStorage.removeItem("token")
+                    localStorage.removeItem("user")
+                    setIsLoggedIn(false)
+                  }}
+                  className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link href="/login" className="px-4 py-2 text-white hover:bg-slate-700 rounded-lg transition">
+                  Login
+                </Link>
+                <Link
+                  href="/register"
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition"
+                >
+                  Register
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center space-y-8">
-          <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
-            Connect. Fund.{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-indigo-600 bg-clip-text text-transparent">Innovate</span>
-          </h1>
-          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            CrowdFund Campus is the ultimate platform connecting ambitious entrepreneurs with forward-thinking
-            investors. Launch your startup, grow your portfolio, or discover the next unicorn.
-          </p>
+      <section className="pt-32 pb-24 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
+          Empowering{" "}
+          <span className="bg-gradient-to-r from-blue-400 to-indigo-600 bg-clip-text text-transparent">
+            Campus Innovators
+          </span>{" "}
+          Through Funding & Mentorship
+        </h1>
+        <p className="text-xl text-slate-300 mt-6">
+          CrowdFund Campus is a next-generation platform connecting student entrepreneurs with investors who believe in
+          their ideas. Build, fund, and scale your campus startup — all in one place.
+        </p>
 
+        <div className="mt-10 flex gap-6 justify-center">
           {!isLoggedIn && (
-            <div className="flex gap-4 justify-center pt-4">
+            <>
               <Link
                 href="/register"
                 className="px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transition transform hover:scale-105"
               >
-                Get Started
+                Start Your Journey
               </Link>
               <Link
                 href="/login"
@@ -115,37 +116,135 @@ export default function Home() {
               >
                 Sign In
               </Link>
-            </div>
+            </>
           )}
         </div>
+      </section>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mt-20">
-          <div className="bg-slate-800/50 backdrop-blur border border-slate-700/50 rounded-xl p-8 hover:border-slate-600/80 transition">
+      {/* Stats Section */}
+      <section className="bg-slate-800/30 py-16 border-y border-slate-700/50">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 text-center gap-10">
+          <div>
+            <h3 className="text-4xl font-bold text-blue-400">500+</h3>
+            <p className="text-slate-400">Active Student Startups</p>
+          </div>
+          <div>
+            <h3 className="text-4xl font-bold text-indigo-400">$1.2M+</h3>
+            <p className="text-slate-400">Fake Sandbox Funds Invested</p>
+          </div>
+          <div>
+            <h3 className="text-4xl font-bold text-emerald-400">50+</h3>
+            <p className="text-slate-400">Partner Colleges</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-24 max-w-7xl mx-auto px-6">
+        <h2 className="text-4xl font-bold text-center mb-16">Why Choose CrowdFund Campus?</h2>
+        <div className="grid md:grid-cols-3 gap-10">
+          <div className="p-8 bg-slate-800/50 border border-slate-700 rounded-xl hover:border-blue-500 transition">
             <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-lg mb-4"></div>
-            <h3 className="text-xl font-bold text-white mb-2">For Entrepreneurs</h3>
+            <h3 className="text-2xl font-semibold mb-2">For Entrepreneurs</h3>
             <p className="text-slate-400">
-              Showcase your innovative ideas and connect with investors ready to fund your vision.
+              Build your startup profile, pitch your idea, and attract investors. Track your funding journey with live
+              progress visualization.
             </p>
           </div>
-
-          <div className="bg-slate-800/50 backdrop-blur border border-slate-700/50 rounded-xl p-8 hover:border-slate-600/80 transition">
+          <div className="p-8 bg-slate-800/50 border border-slate-700 rounded-xl hover:border-emerald-500 transition">
             <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg mb-4"></div>
-            <h3 className="text-xl font-bold text-white mb-2">For Investors</h3>
+            <h3 className="text-2xl font-semibold mb-2">For Investors</h3>
             <p className="text-slate-400">
-              Discover promising startups and grow your investment portfolio with calculated risks.
+              Discover high-potential student startups, invest fake sandbox funds, and simulate real-world portfolio
+              growth.
             </p>
           </div>
-
-          <div className="bg-slate-800/50 backdrop-blur border border-slate-700/50 rounded-xl p-8 hover:border-slate-600/80 transition">
+          <div className="p-8 bg-slate-800/50 border border-slate-700 rounded-xl hover:border-pink-500 transition">
             <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-600 rounded-lg mb-4"></div>
-            <h3 className="text-xl font-bold text-white mb-2">Community Driven</h3>
+            <h3 className="text-2xl font-semibold mb-2">For Institutions</h3>
             <p className="text-slate-400">
-              Join a vibrant community of founders, investors, and mentors shaping the future.
+              Empower your students by providing them a gateway to funding, mentorship, and exposure to a thriving
+              ecosystem.
             </p>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-24 bg-slate-800/30 border-y border-slate-700/50">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold mb-12">How It Works</h2>
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              { step: "1", title: "Sign Up", desc: "Register as an Entrepreneur or Investor." },
+              { step: "2", title: "Create or Discover", desc: "Entrepreneurs launch startups; Investors explore campaigns." },
+              { step: "3", title: "Invest & Track", desc: "Fake sandbox investments simulate real-world experience." },
+              { step: "4", title: "Grow Together", desc: "Achieve milestones and celebrate success with your community." },
+            ].map((item) => (
+              <div
+                key={item.step}
+                className="p-6 bg-slate-800/60 border border-slate-700 rounded-xl hover:border-blue-500 transition"
+              >
+                <div className="text-4xl font-bold text-blue-500 mb-4">{item.step}</div>
+                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                <p className="text-slate-400">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 max-w-6xl mx-auto px-6 text-center">
+        <h2 className="text-4xl font-bold mb-12">What Our Users Say</h2>
+        <div className="grid md:grid-cols-3 gap-10">
+          {[
+            {
+              name: "Aarav Mehta",
+              role: "Student Founder @ EcoPack",
+              quote:
+                "CrowdFund Campus helped me connect with investors and mentors who believed in my vision. My idea went from concept to prototype in 3 months!",
+            },
+            {
+              name: "Priya Sharma",
+              role: "Angel Investor",
+              quote:
+                "It’s a brilliant initiative — the fake investment sandbox gave me hands-on experience in evaluating startups before real-world funding.",
+            },
+            {
+              name: "Rahul Kumar",
+              role: "Incubator Head, PCTE",
+              quote:
+                "An inspiring platform for students! It bridges the gap between innovation and opportunity on campus.",
+            },
+          ].map((t) => (
+            <div key={t.name} className="bg-slate-800/60 border border-slate-700 p-8 rounded-xl">
+              <p className="text-slate-300 italic mb-4">“{t.quote}”</p>
+              <h4 className="font-bold text-white">{t.name}</h4>
+              <p className="text-slate-400 text-sm">{t.role}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-24 bg-gradient-to-r from-blue-600 to-indigo-700 text-center">
+        <h2 className="text-4xl font-bold mb-4">Ready to Start Your Startup Journey?</h2>
+        <p className="text-lg text-slate-200 mb-8">
+          Join the fastest-growing campus startup ecosystem today — build, invest, and innovate!
+        </p>
+        <Link
+          href="/register"
+          className="px-10 py-4 bg-white text-blue-700 font-bold rounded-lg hover:bg-slate-100 transition"
+        >
+          Get Started Now
+        </Link>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 border-t border-slate-700 py-8 text-center text-slate-400 text-sm">
+        © {new Date().getFullYear()} CrowdFund Campus — All rights reserved.
+      </footer>
     </div>
   )
 }

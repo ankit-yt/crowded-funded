@@ -84,9 +84,7 @@ export default function CampaignDetail() {
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header Image */}
-        <div className="h-96 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-lg mb-8 flex items-center justify-center">
-          <span className="text-8xl opacity-30">📈</span>
-        </div>
+       
 
         {/* Campaign Info */}
         <div className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-8 mb-8">
